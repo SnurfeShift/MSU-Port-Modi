@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.shift.minestuckuniverse.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
