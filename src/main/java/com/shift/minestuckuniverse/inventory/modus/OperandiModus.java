@@ -18,12 +18,7 @@ import java.util.List;
 
 public class OperandiModus extends ArrayModus {
     public static final List<Item> pool = List.of(
-            MSUItems.OPERANDI_HOE.get(),
-            Items.GRANITE,
-            Items.ANDESITE,
-            Items.BEEHIVE,
-            Items.COBBLESTONE,
-            Items.BONE
+            MSUItems.OPERANDI_HOE.get()
     );
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OperandiModus.class);

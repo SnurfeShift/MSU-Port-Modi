@@ -96,9 +96,7 @@ public class SlimeModus extends ArrayModus {
 
         slime.setDeltaMovement(vx, vy, vz);
 
-        LOGGER.debug("SlimeModus: Attempting to create Cruxite Slime with: {}", stack);
         slime.setStoredItem(stack);
-        LOGGER.debug("SlimeModus: Slime created, checking storedItem: {}", slime.getStoredItem());
         world.addFreshEntity(slime);
     }
 }

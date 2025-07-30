@@ -15,11 +15,11 @@ import static com.mraof.minestuck.client.gui.MSScreenFactories.registerSylladexF
 public class MSUScreenFactories {
     @SubscribeEvent
     public static void registerScreenFactories(RegisterMenuScreensEvent event) {
-        registerSylladexFactory(MSUModusTypes.ARRAY, CommunistSylladexScreen::new);
+        registerSylladexFactory(MSUModusTypes.ARRAY, ArraySylladexScreen::new);
         registerSylladexFactory(MSUModusTypes.SLIME, SlimeSylladexScreen::new);
         registerSylladexFactory(MSUModusTypes.WALLET, WalletSylladexScreen::new);
         registerSylladexFactory(MSUModusTypes.OPERANDI, OperandiSylladexScreen::new);
-
+        registerSylladexFactory(MSUModusTypes.COMMUNIST, CommunistSylladexScreen::new);
     }
 
 }

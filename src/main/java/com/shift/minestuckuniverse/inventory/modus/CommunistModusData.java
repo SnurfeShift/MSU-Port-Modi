@@ -1,5 +1,7 @@
 package com.shift.minestuckuniverse.inventory.modus;
 
+import com.mraof.minestuck.inventory.captchalogue.CaptchaDeckHandler;
+import com.mraof.minestuck.inventory.captchalogue.Modus;
 import com.shift.minestuckuniverse.MinestuckUniverseModus;
 import com.shift.minestuckuniverse.network.CommunistUpdatePacket;
 import net.minecraft.core.HolderLookup;
@@ -8,10 +10,12 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.storage.DimensionDataStorage;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.Iterator;
 
@@ -24,17 +28,17 @@ public class CommunistModusData extends SavedData {
 
     public final MinecraftServer mcServer;
 
-    public CommunistModusData(MinecraftServer server) {
+    public CommunistModusData(MinecraftServer mcServer) {
         this.size = 5;
         this.list = NonNullList.create();
-        this.mcServer = server;
+        this.mcServer = mcServer;
     }
 
     public static CommunistModusData get(Level level)
     {
         MinecraftServer server = level.getServer();
         if(server == null)
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Attempted to get CommunistData through client");
         return get(server);
     }
 
@@ -47,24 +51,24 @@ public class CommunistModusData extends SavedData {
     }
 
     @Override
-    public CompoundTag save(CompoundTag compoundTag, HolderLookup.Provider provider) {
-        compoundTag.putInt("size", size);
+    public CompoundTag save(CompoundTag tag, HolderLookup.Provider provider) {
+        tag.putInt("size", size);
         Iterator<ItemStack> iter = list.iterator();
 
         for (int i = 0; i< list.size(); i++) {
-            ItemStack stack = iter.next();
-            compoundTag.put("item"+i, stack.save(provider));
+            ItemStack item = iter.next();
+            tag.put("item"+i, item.save(provider));
         }
-        return compoundTag;
+        return tag;
     }
 
-    public static CommunistModusData load(CompoundTag compoundTag, HolderLookup.Provider provider, MinecraftServer mcServer) {
+    public static CommunistModusData load(CompoundTag tag, HolderLookup.Provider provider, MinecraftServer mcServer) {
         CommunistModusData data = new CommunistModusData(mcServer);
-        data.size = compoundTag.getInt("size");
+        data.size = tag.getInt("size");
         data.list = NonNullList.create();
         for (int i = 0; i < data.size; i++) {
-            if (compoundTag.contains("item" + i, Tag.TAG_COMPOUND)) {
-                data.list.add(ItemStack.parseOptional(provider, compoundTag.getCompound("item"+i)));
+            if (tag.contains("item" + i, Tag.TAG_COMPOUND)) {
+                data.list.add(ItemStack.parseOptional(provider, tag.getCompound("item"+i)));
             }
         }
         return data;
@@ -83,25 +87,25 @@ public class CommunistModusData extends SavedData {
         return size;
     }
 
-    public void setSize(int newSize) {
-        size = newSize;
+    public void setSize(int size) {
+        this.size = size;
         setDirty();
     }
 
-    public void setList(NonNullList<ItemStack> newList) {
-        list = newList;
+    public void setList(NonNullList<ItemStack> list) {
+        this.list = list;
         setDirty();
     }
 
-    public void setItem(int index, ItemStack stack) {
-        if (index >= 0 && index < list.size()) {
-            list.set(index, stack);
+    public void setItem(int i, ItemStack item) {
+        if (i >= 0 && i < list.size()) {
+            list.set(i, item);
             setDirty();
         }
     }
 
-    public void addItem(ItemStack stack) {
-        list.add(stack);
+    public void addItem(ItemStack item) {
+        list.add(item);
         setDirty();
     }
 
@@ -110,23 +114,59 @@ public class CommunistModusData extends SavedData {
         setDirty();
     }
 
-    public ItemStack removeItem(int index) {
-        if (index >= 0 && index < list.size()) {
-            ItemStack removed = list.remove(index);
+    public ItemStack removeItem(int i) {
+        if (i >= 0 && i < list.size()) {
+            ItemStack item = list.remove(i);
             setDirty();
-            return removed;
+            return item;
         }
         return null;
     }
 
-    public void broadcastUpdate() {
-        CommunistUpdatePacket packet = new CommunistUpdatePacket(NonNullList.withSize(list.size(), ItemStack.EMPTY));
-        for (int i = 0; i < list.size(); i++) {
-            packet.items().set(i, list.get(i).copy());
+    public static void initializePlayer(ServerPlayer player) {
+        CommunistModusData data = CommunistModusData.get(player.server);
+        data.sendUpdateToPlayer(player);
+    }
+
+    public void sendUpdateToPlayer(ServerPlayer player) {
+        CompoundTag tag = new CompoundTag();
+        tag.putInt("size", size);
+        Iterator<ItemStack> iter = list.iterator();
+
+        for (int i = 0; i< list.size(); i++) {
+            ItemStack item = iter.next();
+            tag.put("item"+i, item.save(mcServer.registryAccess()));
         }
 
+        CommunistUpdatePacket packet = new CommunistUpdatePacket(tag);
+
+        PacketDistributor.sendToPlayer(player, packet);
+        player.getInventory().setChanged();
+        player.inventoryMenu.broadcastChanges();
+        Modus modus = CaptchaDeckHandler.getModus(player);
+        modus.markDirty();
+        modus.checkAndResend(player);
+    }
+
+    public void broadcastUpdate() {
+        CompoundTag tag = new CompoundTag();
+        tag.putInt("size", size);
+        Iterator<ItemStack> iter = list.iterator();
+
+        for (int i = 0; i< list.size(); i++) {
+            ItemStack item = iter.next();
+            tag.put("item"+i, item.save(mcServer.registryAccess()));
+        }
+
+        CommunistUpdatePacket packet = new CommunistUpdatePacket(tag);
+
         for (ServerPlayer player : mcServer.getPlayerList().getPlayers()) {
-            MSPacketHandler.sendToPlayer(player, packet);
+            PacketDistributor.sendToPlayer(player, packet);
+            player.getInventory().setChanged();
+            player.inventoryMenu.broadcastChanges();
+            Modus modus = CaptchaDeckHandler.getModus(player);
+            modus.markDirty();
+            modus.checkAndResend(player);
         }
     }
 }

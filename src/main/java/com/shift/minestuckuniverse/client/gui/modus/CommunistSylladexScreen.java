@@ -1,7 +1,6 @@
 package com.shift.minestuckuniverse.client.gui.modus;
 
 import com.mraof.minestuck.inventory.captchalogue.Modus;
-import com.shift.minestuckuniverse.inventory.modus.ArrayModus;
 import com.shift.minestuckuniverse.inventory.modus.CommunistModus;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
@@ -12,7 +11,7 @@ public class CommunistSylladexScreen extends MSUSylladexScreen {
     public CommunistSylladexScreen(Modus modus) {
         super(modus);
         this.modus = (CommunistModus) modus;
-        textureIndex = 42;
+        textureIndex = 3;
     }
 
     public void updateContent() {

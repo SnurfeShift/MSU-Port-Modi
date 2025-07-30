@@ -32,5 +32,6 @@ public class MSUCreativeTab {
         output.accept(MSUItems.SLIME_MODUS_CARD.get());
         output.accept(MSUItems.WALLET_MODUS_CARD.get());
         output.accept(MSUItems.OPERANDI_MODUS_CARD.get());
+        output.accept(MSUItems.COMMUNIST_MODUS_CARD.get());
     }
 }
