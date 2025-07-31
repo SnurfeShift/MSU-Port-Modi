@@ -141,8 +141,6 @@ public class CommunistModusData extends SavedData {
         CommunistUpdatePacket packet = new CommunistUpdatePacket(tag);
 
         PacketDistributor.sendToPlayer(player, packet);
-        player.getInventory().setChanged();
-        player.inventoryMenu.broadcastChanges();
         Modus modus = CaptchaDeckHandler.getModus(player);
         modus.markDirty();
         modus.checkAndResend(player);
@@ -162,8 +160,6 @@ public class CommunistModusData extends SavedData {
 
         for (ServerPlayer player : mcServer.getPlayerList().getPlayers()) {
             PacketDistributor.sendToPlayer(player, packet);
-            player.getInventory().setChanged();
-            player.inventoryMenu.broadcastChanges();
             Modus modus = CaptchaDeckHandler.getModus(player);
             modus.markDirty();
             modus.checkAndResend(player);

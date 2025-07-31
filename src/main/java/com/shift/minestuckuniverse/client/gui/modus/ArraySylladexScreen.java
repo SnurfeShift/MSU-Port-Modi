@@ -3,6 +3,7 @@ package com.shift.minestuckuniverse.client.gui.modus;
 import com.shift.minestuckuniverse.inventory.modus.ArrayModus;
 import com.mraof.minestuck.inventory.captchalogue.Modus;
 import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 public class ArraySylladexScreen extends MSUSylladexScreen {

@@ -20,6 +20,8 @@ public class MSUScreenFactories {
         registerSylladexFactory(MSUModusTypes.WALLET, WalletSylladexScreen::new);
         registerSylladexFactory(MSUModusTypes.OPERANDI, OperandiSylladexScreen::new);
         registerSylladexFactory(MSUModusTypes.COMMUNIST, CommunistSylladexScreen::new);
+        registerSylladexFactory(MSUModusTypes.CAPITALIST, CapitalistSylladexScreen::new);
+
     }
 
 }
