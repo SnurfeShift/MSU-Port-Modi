@@ -24,7 +24,7 @@ license="MIT"
 modId="minestuckuniversemoduses" #mandatory
 
 # The version number of the mod
-version="0.0.3" #mandatory
+version="0.0.4.3" #mandatory
 
 # A display name for the mod
 displayName="Minestuck Universe Moduses" #mandatory
@@ -42,7 +42,7 @@ displayName="Minestuck Universe Moduses" #mandatory
 #credits="" #optional
 
 # A text field displayed in the mod UI
-authors="Cibernet(Thanks for Minestuck Universe), Shift" #optional
+authors="Cibernet(Thanks for Minestuck Universe)" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''Minestuck Universe Moduses'''

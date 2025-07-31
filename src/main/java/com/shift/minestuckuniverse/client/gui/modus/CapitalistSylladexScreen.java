@@ -148,16 +148,13 @@ public class CapitalistSylladexScreen extends MSUSylladexScreen {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-        LOGGER.debug("MouseClicked Procced");
         if (this.isMouseInContainer(mouseX, mouseY)) {
-            LOGGER.debug("MouseClicked in container");
             int xOffset = (this.width - 256) / 2;
             int yOffset = (this.height - 202) / 2;
             int translX = (int)((mouseX - (double)xOffset - (double)16.0F) * (double)this.scroll);
             int translY = (int)((mouseY - (double)yOffset - (double)17.0F) * (double)this.scroll);
 
             for(GuiPricedCard card : this.cards) {
-                LOGGER.debug("MouseClicked going through cards, {}", card.item.getDisplayName());
                 if (translX >= card.xPos + 2 - this.mapX && translX < card.xPos + 18 - this.mapX && translY >= card.yPos + 7 - this.mapY && translY < card.yPos + 23 - this.mapY) {
                     card.onClick(mouseButton);
                     return true;
