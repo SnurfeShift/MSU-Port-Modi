@@ -102,7 +102,7 @@ public class CapitalistModus extends ArrayModus {
             markDirty();
             item = CaptchaCardItem.createCardWithItem(item, player.server);
         }
-        return ItemStack.EMPTY;
+        return item;
     }
 
     public static int getItemPrice(ItemStack item, Level level) {
