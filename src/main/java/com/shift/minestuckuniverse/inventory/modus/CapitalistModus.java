@@ -31,6 +31,14 @@ public class CapitalistModus extends ArrayModus {
     @Override
     public ItemStack getItem(ServerPlayer player, int id, boolean asCard)
     {
+        if(asCard)
+        {
+            ItemStack item = list.remove(id);
+            size--;
+            markDirty();
+            return CaptchaCardItem.createCardWithItem(item, player.server);
+        }
+
         int price = 0;
 
         // Empty Card
@@ -96,13 +104,7 @@ public class CapitalistModus extends ArrayModus {
                             .append(item.getDisplayName())
                             .append(Component.literal(". You need $" + price + ", your balance: $" + boondollars))
             );        }
-        if(asCard)
-        {
-            size--;
-            markDirty();
-            item = CaptchaCardItem.createCardWithItem(item, player.server);
-        }
-        return item;
+        return ItemStack.EMPTY;
     }
 
     public static int getItemPrice(ItemStack item, Level level) {
