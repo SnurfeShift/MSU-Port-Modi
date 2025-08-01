@@ -1,0 +1,11 @@
+{
+  "type": "minestuck:grist_cost",
+  "grist_cost": {
+    "minestuck:build": 270,
+    "minestuck:diamond": 5,
+    "minestuck:gold": 55
+  },
+  "ingredient": {
+    "item": "minestuckuniversemoduses:capitalist_modus_card"
+  }
+}

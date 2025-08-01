@@ -5,11 +5,10 @@ import com.mraof.minestuck.inventory.captchalogue.ModusType;
 import com.mraof.minestuck.item.CaptchaCardItem;
 import com.mraof.minestuck.item.MSItems;
 import com.shift.minestuckuniverse.item.MSUItems;
-import com.shift.minestuckuniverse.item.Operandi.OperandiUtility;
+import com.shift.minestuckuniverse.item.Captchalogue.OperandiUtility;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.neoforged.fml.LogicalSide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,8 @@ import java.util.List;
 
 public class OperandiModus extends ArrayModus {
     public static final List<Item> pool = List.of(
-            MSUItems.OPERANDI_HOE.get()
+            MSUItems.OPERANDI_HOE.get(),
+            MSUItems.OPERANDI_PICKAXE.get()
     );
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OperandiModus.class);

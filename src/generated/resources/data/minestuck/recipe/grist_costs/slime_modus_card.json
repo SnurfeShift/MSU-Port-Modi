@@ -1,0 +1,10 @@
+{
+  "type": "minestuck:grist_cost",
+  "grist_cost": {
+    "minestuck:build": 340,
+    "minestuck:caulk": 28
+  },
+  "ingredient": {
+    "item": "minestuckuniversemoduses:slime_modus_card"
+  }
+}

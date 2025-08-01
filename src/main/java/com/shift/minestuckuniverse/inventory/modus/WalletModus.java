@@ -10,6 +10,7 @@ import net.neoforged.fml.LogicalSide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+//This should be able to catalogue entities soon
 public class WalletModus extends ArrayModus {
     //This should be Configurable
     public static final int CARD_LIMIT = 10;

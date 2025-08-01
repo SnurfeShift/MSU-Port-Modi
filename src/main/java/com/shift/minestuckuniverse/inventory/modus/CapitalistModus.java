@@ -31,14 +31,6 @@ public class CapitalistModus extends ArrayModus {
     @Override
     public ItemStack getItem(ServerPlayer player, int id, boolean asCard)
     {
-        if(asCard)
-        {
-            ItemStack item = list.remove(id);
-            size--;
-            markDirty();
-            return CaptchaCardItem.createCardWithItem(item, player.server);
-        }
-
         int price = 0;
 
         // Empty Card
@@ -82,6 +74,14 @@ public class CapitalistModus extends ArrayModus {
 
         if(id < 0 || id >= list.size())
             return ItemStack.EMPTY;
+
+        if(asCard)
+        {
+            ItemStack item = list.remove(id);
+            size--;
+            markDirty();
+            return CaptchaCardItem.createCardWithItem(item, player.server);
+        }
 
         ItemStack item = list.get(id);
         markDirty();

@@ -1,5 +1,10 @@
 {
   "values": [
-    "examplemod:msu_array_modus_card"
+    "minestuckuniversemoduses:array_modus_card",
+    "minestuckuniversemoduses:slime_modus_card",
+    "minestuckuniversemoduses:operandi_modus_card",
+    "minestuckuniversemoduses:communist_modus_card",
+    "minestuckuniversemoduses:wallet_modus_card",
+    "minestuckuniversemoduses:capitalist_modus_card"
   ]
 }

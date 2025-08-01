@@ -23,15 +23,17 @@ public class MSUItemTagsProvider extends ItemTagsProvider {
     {
         super(output, lookupProvider, blockTagProvider, MinestuckUniverseModus.MOD_ID, existingFileHelper);
     }
-
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(MODUS_CARD).add(MSUItems.ARRAY_MODUS_CARD.get());
-    }
+        tag(MODUS_CARD).add(MSUItems.SLIME_MODUS_CARD.get());
+        tag(MODUS_CARD).add(MSUItems.OPERANDI_MODUS_CARD.get());
+        tag(MODUS_CARD).add(MSUItems.COMMUNIST_MODUS_CARD.get());
+        tag(MODUS_CARD).add(MSUItems.WALLET_MODUS_CARD.get());
+        tag(MODUS_CARD).add(MSUItems.CAPITALIST_MODUS_CARD.get());
 
-    @Override
-    public String getName()
-    {
-        return "MSU Item Tags";
+
+
+
     }
 }

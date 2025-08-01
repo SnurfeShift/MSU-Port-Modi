@@ -142,6 +142,8 @@ dependencies {
     implementation "curse.maven:infiniverse-568341:5486311"
     implementation "curse.maven:jei-238222:6614392"
     implementation "curse.maven:neat-238372:5838045"
+    implementation "curse.maven:configured-457570:5873783"
+
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

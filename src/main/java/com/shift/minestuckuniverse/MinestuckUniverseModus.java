@@ -6,6 +6,7 @@ import com.shift.minestuckuniverse.item.MSUCreativeTab;
 import com.shift.minestuckuniverse.item.MSUItemComponents;
 import com.shift.minestuckuniverse.item.MSUItems;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
 
@@ -37,6 +38,8 @@ public class MinestuckUniverseModus {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MinestuckUniverseModus(IEventBus modEventBus, ModContainer modContainer) {
+        modContainer.registerConfig(ModConfig.Type.SERVER, Config.serverSpec);
+
         MSUModusTypes.register();
         MSUItems.REGISTER.register(modEventBus);
         MSUEntities.register(modEventBus);

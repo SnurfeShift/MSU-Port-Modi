@@ -1,7 +1,9 @@
 package com.shift.minestuckuniverse.item;
 
 import com.shift.minestuckuniverse.MinestuckUniverseModus;
-import com.shift.minestuckuniverse.item.Operandi.HoeOperandiItem;
+import com.shift.minestuckuniverse.item.Captchalogue.HoeOperandiItem;
+import com.shift.minestuckuniverse.item.Captchalogue.PickaxeOperandiItem;
+import com.shift.minestuckuniverse.item.Captchalogue.WalletEntityItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -19,5 +21,9 @@ public class MSUItems {
 
     //Operandi
     public static final DeferredItem<Item> OPERANDI_HOE = REGISTER.register("operandi_hoe", () -> new HoeOperandiItem(MSUTiers.OPERANDI, new Item.Properties().durability(3)));
+    public static final DeferredItem<Item> OPERANDI_PICKAXE = REGISTER.register("operandi_pickaxe", () -> new PickaxeOperandiItem(MSUTiers.OPERANDI, new Item.Properties().durability(3)));
+
+    //Wallet Entity
+    public static final DeferredItem<Item> WALLET_ENTITY_ITEM = REGISTER.register("wallet_entity_item", () -> new WalletEntityItem(new Item.Properties().stacksTo(1)));
 
 }

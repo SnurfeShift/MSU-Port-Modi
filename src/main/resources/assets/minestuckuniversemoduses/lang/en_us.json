@@ -12,6 +12,7 @@
 
   //Operandi Items
   "item.minestuckuniversemoduses.operandi_hoe": "Operandi Hoe",
+  "item.minestuckuniversemoduses.operandi_pickaxe": "Operandi Pickaxe",
 
   //Entity
   "entity.minestuckuniversemoduses.cruxite_slime": "Cruxite Slime",
@@ -19,6 +20,8 @@
   //Creative tab
   "minestuckuniversemoduses.modus_items_keys": "Moduses",
 
+  //Regular Item
+  "item.minestuckuniversemoduses.wallet_entity_item": "Entity",
   //
   "examplemod.configuration.title": "Example Mod Configs",
   "examplemod.configuration.section.examplemod.common.toml": "Example Mod Configs",

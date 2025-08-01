@@ -1,0 +1,10 @@
+{
+  "type": "minestuck:grist_cost",
+  "grist_cost": {
+    "minestuck:build": 50000,
+    "minestuck:caulk": 50000
+  },
+  "ingredient": {
+    "item": "minestuckuniversemoduses:wallet_modus_card"
+  }
+}

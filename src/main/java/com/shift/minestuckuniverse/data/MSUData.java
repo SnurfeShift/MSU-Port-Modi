@@ -1,6 +1,7 @@
 package com.shift.minestuckuniverse.data;
 
 import com.shift.minestuckuniverse.MinestuckUniverseModus;
+import com.shift.minestuckuniverse.data.recipe.MSURecipeProvider;
 import com.shift.minestuckuniverse.data.tag.MSUBlockTagsProvider;
 import com.shift.minestuckuniverse.data.tag.MSUItemTagsProvider;
 import net.minecraft.core.HolderLookup;
@@ -30,6 +31,8 @@ public class MSUData {
         var blockTags = gen.addProvider(event.includeServer(), new MSUBlockTagsProvider(output, lookupProvider, fileHelper));
 
         gen.addProvider(event.includeServer(), new MSUItemTagsProvider(output, lookupProvider, blockTags.contentsGetter(), fileHelper));
+        gen.addProvider(event.includeServer(), new MSURecipeProvider(output, event.getLookupProvider()));
+
     }
 
     private static RegistrySetBuilder registrySetBuilder() {

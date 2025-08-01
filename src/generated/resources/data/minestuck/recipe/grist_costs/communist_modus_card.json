@@ -1,0 +1,11 @@
+{
+  "type": "minestuck:grist_cost",
+  "grist_cost": {
+    "minestuck:build": 707,
+    "minestuck:gold": 128,
+    "minestuck:ruby": 128
+  },
+  "ingredient": {
+    "item": "minestuckuniversemoduses:communist_modus_card"
+  }
+}

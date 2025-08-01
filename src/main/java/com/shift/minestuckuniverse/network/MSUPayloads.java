@@ -20,6 +20,8 @@ public class MSUPayloads {
 
         registerPlayToClient(registrar, CommunistUpdatePacket.ID, CommunistUpdatePacket.STREAM_CODEC);
         registerPlayToServer(registrar, CommunistRequestPacket.ID, CommunistRequestPacket.STREAM_CODEC);
+        registerPlayToServer(registrar, WalletCaptchaloguePacket.ID, WalletCaptchaloguePacket.STREAM_CODEC);
+
     }
 
     private static <T extends MSPacket.PlayToClient> void registerPlayToClient(PayloadRegistrar registrar, CustomPacketPayload.Type<T> type, StreamCodec<? super RegistryFriendlyByteBuf, T> codec)

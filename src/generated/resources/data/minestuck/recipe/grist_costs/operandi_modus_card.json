@@ -1,0 +1,11 @@
+{
+  "type": "minestuck:grist_cost",
+  "grist_cost": {
+    "minestuck:build": 340,
+    "minestuck:garnet": 24,
+    "minestuck:shale": 33
+  },
+  "ingredient": {
+    "item": "minestuckuniversemoduses:operandi_modus_card"
+  }
+}

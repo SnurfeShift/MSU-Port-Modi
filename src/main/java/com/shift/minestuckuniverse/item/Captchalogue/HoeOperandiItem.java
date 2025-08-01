@@ -1,4 +1,4 @@
-package com.shift.minestuckuniverse.item.Operandi;
+package com.shift.minestuckuniverse.item.Captchalogue;
 
 import com.shift.minestuckuniverse.item.Components.OperandiStoredItemComponent;
 import net.minecraft.network.chat.Component;
