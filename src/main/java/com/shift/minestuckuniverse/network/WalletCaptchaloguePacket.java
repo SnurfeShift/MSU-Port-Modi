@@ -44,66 +44,89 @@ public record WalletCaptchaloguePacket() implements MSPacket.PlayToServer
     @Override
     public void execute(IPayloadContext context, ServerPlayer player)
     {
-        BlockPos pos = getLookedBlockPos(player, 4);
-        if (pos == null)
-            return;
-
-        Level level = player.level();
-        BlockState state = level.getBlockState(pos);
-        Block block = state.getBlock();
-        BlockEntity be = level.getBlockEntity(pos);
-        BlockPos actualPos = pos;
-
-        switch (block) {
-            case AlchemiterBlock destroyable -> {
-                Optional<BlockPos> mainPos = destroyable.getMainPos(state, pos, level);
-                if (mainPos.isPresent()) {
-                    actualPos = mainPos.get();
-                    be = level.getBlockEntity(actualPos);
-                }
-            }
-            case CruxtruderBlock destroyable -> {
-                actualPos = destroyable.getMainPos(state, pos);
-                be = level.getBlockEntity(actualPos);
-            }
-            case TotemLatheBlock destroyable -> {
-                actualPos = destroyable.getMainPos(state, pos);
-                be = level.getBlockEntity(actualPos);
-            }
-            case PunchDesignixBlock destroyable -> {
-                actualPos = destroyable.getMainPos(state, pos);
-                be = level.getBlockEntity(actualPos);
-            }
-            default -> {
-            }
-        }
-
-        if (be != null) {
-            ItemStack stack = captchalogueTileEntity(level, actualPos);
-            if (stack.isEmpty())
+        Entity lookedAt = getLookedEntity(player, 4);
+        if (lookedAt instanceof LivingEntity living && !(lookedAt instanceof Player)) {
+            String entityId = EntityType.getKey(living.getType()).toString();
+            List<? extends String> allowed = Config.SERVER.blacklistedEntities.get();
+            if (allowed.contains(entityId)) {
                 return;
+            }
+
+            ItemStack stack = createEntityItem(living);
 
             Modus modus = CaptchaDeckHandler.getModus(player);
-            if (modus == null)
+            if(modus == null)
                 return;
 
             boolean result = modus.putItemStack(player, stack.copy());
-            if (result) {
+            if(result) {
                 MSCriteriaTriggers.CAPTCHALOGUE.get().trigger(player, modus, stack);
                 stack.setCount(0);
+                living.discard();
+                modus.checkAndResend(player);
+            }
+        } else {
+            BlockPos pos = getLookedBlockPos(player, 4);
+            if (pos == null)
+                return;
 
-                switch (block) {
-                    case AlchemiterBlock destroyable -> destroyable.destroyFull(state, level, pos);
-                    case CruxtruderBlock destroyable -> destroyable.destroyFull(state, level, pos);
-                    case TotemLatheBlock destroyable -> destroyable.destroyFull(state, level, pos);
-                    case PunchDesignixBlock destroyable -> destroyable.destroyFull(state, level, pos);
-                    default -> {
-                        level.removeBlockEntity(actualPos);
-                        level.destroyBlock(actualPos, false);
+            Level level = player.level();
+            BlockState state = level.getBlockState(pos);
+            Block block = state.getBlock();
+            BlockEntity be = level.getBlockEntity(pos);
+            BlockPos actualPos = pos;
+
+            switch (block) {
+                case AlchemiterBlock destroyable -> {
+                    Optional<BlockPos> mainPos = destroyable.getMainPos(state, pos, level);
+                    if (mainPos.isPresent()) {
+                        actualPos = mainPos.get();
+                        be = level.getBlockEntity(actualPos);
                     }
                 }
+                case CruxtruderBlock destroyable -> {
+                    actualPos = destroyable.getMainPos(state, pos);
+                    be = level.getBlockEntity(actualPos);
+                }
+                case TotemLatheBlock destroyable -> {
+                    actualPos = destroyable.getMainPos(state, pos);
+                    be = level.getBlockEntity(actualPos);
+                }
+                case PunchDesignixBlock destroyable -> {
+                    actualPos = destroyable.getMainPos(state, pos);
+                    be = level.getBlockEntity(actualPos);
+                }
+                default -> {
+                }
+            }
 
-                modus.checkAndResend(player);
+            if (be != null) {
+                ItemStack stack = captchalogueTileEntity(level, actualPos);
+                if (stack.isEmpty())
+                    return;
+
+                Modus modus = CaptchaDeckHandler.getModus(player);
+                if (modus == null)
+                    return;
+
+                boolean result = modus.putItemStack(player, stack.copy());
+                if (result) {
+                    MSCriteriaTriggers.CAPTCHALOGUE.get().trigger(player, modus, stack);
+                    stack.setCount(0);
+
+                    switch (block) {
+                        case AlchemiterBlock destroyable -> destroyable.destroyFull(state, level, pos);
+                        case CruxtruderBlock destroyable -> destroyable.destroyFull(state, level, pos);
+                        case TotemLatheBlock destroyable -> destroyable.destroyFull(state, level, pos);
+                        case PunchDesignixBlock destroyable -> destroyable.destroyFull(state, level, pos);
+                        default -> {
+                            level.removeBlockEntity(actualPos);
+                            level.destroyBlock(actualPos, false);
+                        }
+                    }
+
+                    modus.checkAndResend(player);
+                }
             }
         }
     }
@@ -168,10 +191,6 @@ public record WalletCaptchaloguePacket() implements MSPacket.PlayToServer
 
         if (be != null && breakable && item != Items.AIR) {
             ItemStack stack = new ItemStack(item);
-            CompoundTag beData = new CompoundTag();
-
-            //DataComponentMap map = be.collectComponents();
-            //stack.applyComponents(map);
             be.saveToItem(stack, level.registryAccess());
             return stack;
         }
