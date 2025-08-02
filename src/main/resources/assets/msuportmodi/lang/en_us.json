@@ -1,0 +1,33 @@
+{
+  "itemGroup.examplemod": "Example Mod Tab",
+  "block.examplemod.example_block": "Example Block",
+  //Modus Items
+  "item.msuportmodi.array_modus_card": "Array Modus",
+  "item.msuportmodi.juju_modus_card": "Juju Modus",
+  "item.msuportmodi.slime_modus_card": "Slime Modus",
+  "item.msuportmodi.wallet_modus_card": "Wallet Modus",
+  "item.msuportmodi.operandi_modus_card": "Operandi Modus",
+  "item.msuportmodi.communist_modus_card": "ModUs",
+  "item.msuportmodi.capitalist_modus_card": "ModusPlus™",
+
+  //Operandi Items
+  "item.msuportmodi.operandi_hoe": "Operandi Hoe",
+  "item.msuportmodi.operandi_pickaxe": "Operandi Pickaxe",
+
+  //Entity
+  "entity.msuportmodi.cruxite_slime": "Cruxite Slime",
+
+  //Creative tab
+  "msuportmodi.modus_items_keys": "Moduses",
+
+  //Regular Item
+  "item.msuportmodi.wallet_entity_item": "Entity",
+  //
+  "examplemod.configuration.title": "Example Mod Configs",
+  "examplemod.configuration.section.examplemod.common.toml": "Example Mod Configs",
+  "examplemod.configuration.section.examplemod.common.toml.title": "Example Mod Configs",
+  "examplemod.configuration.items": "Item List",
+  "examplemod.configuration.logDirtBlock": "Log Dirt Block",
+  "examplemod.configuration.magicNumberIntroduction": "Magic Number Text",
+  "examplemod.configuration.magicNumber": "Magic Number"
+}

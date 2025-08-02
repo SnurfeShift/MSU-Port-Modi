@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minestuckuniversemoduses:item/mod_us"
+    "layer0": "msuportmodi:item/abstract_item"
   }
 }

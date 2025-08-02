@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minestuckuniversemoduses:item/array_modus"
+    "layer0": "msuportmodi:item/operandi/operandi_pickaxe"
   }
 }

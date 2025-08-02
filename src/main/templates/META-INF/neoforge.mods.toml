@@ -21,13 +21,13 @@ license="MIT"
 [[mods]] #mandatory
 
 # The modid of the mod
-modId="minestuckuniversemoduses" #mandatory
+modId="msuportmodi" #mandatory
 
 # The version number of the mod
 version="0.0.6.1" #mandatory
 
 # A display name for the mod
-displayName="Minestuck Universe Modi" #mandatory
+displayName="MSU Port: Modi" #mandatory
 
 # A URL to query for updates for this mod. See the JSON update specification https://docs.neoforged.net/docs/misc/updatechecker/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
@@ -45,7 +45,7 @@ displayName="Minestuck Universe Modi" #mandatory
 authors="Cibernet(Thanks for Minestuck Universe)" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
-description='''Minestuck Universe Modi'''
+description='''MSU Port: Modi'''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
 [[mixins]]
@@ -59,7 +59,7 @@ config="minestuckuniversemoduses.mixins.json"
 # The coremods config file path is not configurable and is always loaded from META-INF/coremods.json
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.minestuckuniversemoduses]] #optional
+[[dependencies.msuportmodi]] #optional
     # the modid of the dependency
     modId="neoforge" #mandatory
     # The type of the dependency. Can be one of "required", "optional", "incompatible" or "discouraged" (case insensitive).
@@ -78,7 +78,7 @@ config="minestuckuniversemoduses.mixins.json"
     side="BOTH"
 
 # Here's another dependency
-[[dependencies.minestuckuniversemoduses]]
+[[dependencies.msuportmodi]]
     modId="minecraft"
     type="required"
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
@@ -86,28 +86,28 @@ config="minestuckuniversemoduses.mixins.json"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.minestuckuniversemoduses]]
+[[dependencies.msuportmodi]]
     modId = "minestuck"
     type = "required"
     versionRange = "[1.21.1,)"
     ordering = "AFTER"
     side = "BOTH"
 
-[[dependencies.minestuckuniversemoduses]]
+[[dependencies.msuportmodi]]
     modId = "geckolib"
     type = "required"
     versionRange = "[4.5.4,)"
     ordering = "AFTER"
     side = "BOTH"
 
-[[dependencies.minestuckuniversemoduses]]
+[[dependencies.msuportmodi]]
     modId = "infiniverse"
     type = "required"
     versionRange = "[1.0.5,)"
     ordering = "AFTER"
     side = "BOTH"
 
-[[dependencies.minestuckuniversemoduses]]
+[[dependencies.msuportmodi]]
     modId = "jei"
     type = "optional"
     versionRange = "[17.2.0.49,)"
