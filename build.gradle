@@ -143,6 +143,16 @@ dependencies {
     implementation "curse.maven:jei-238222:6614392"
     implementation "curse.maven:neat-238372:5838045"
     implementation "curse.maven:configured-457570:5873783"
+    compileOnly "curse.maven:ftb-chunks-forge-314906:6504893"
+    compileOnly "curse.maven:ftb-library-forge-404465:6807431"
+    compileOnly "curse.maven:ftb-teams-forge-404468:6119437"
+    compileOnly "curse.maven:ftb-ranks-forge-314905:6431744"
+    compileOnly "curse.maven:architectury-api-419699:5786327"
+    runtimeOnly "curse.maven:ftb-chunks-forge-314906:6504893"
+    runtimeOnly "curse.maven:ftb-library-forge-404465:6807431"
+    runtimeOnly "curse.maven:ftb-teams-forge-404468:6119437"
+    runtimeOnly "curse.maven:ftb-ranks-forge-314905:6431744"
+    runtimeOnly "curse.maven:architectury-api-419699:5786327"
 
 
     // For more info:

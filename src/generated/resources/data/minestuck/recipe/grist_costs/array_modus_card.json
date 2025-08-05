@@ -1,9 +1,9 @@
 {
   "type": "minestuck:grist_cost",
   "grist_cost": {
-    "minestuck:build": 3000000
+    "minestuck:build": 300
   },
   "ingredient": {
-    "item": "minestuckuniversemoduses:array_modus_card"
+    "item": "msuportmodi:array_modus_card"
   }
 }

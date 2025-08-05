@@ -24,7 +24,7 @@ license="MIT"
 modId="msuportmodi" #mandatory
 
 # The version number of the mod
-version="0.0.6.1-testing" #mandatory
+version="0.0.8.4-testing" #mandatory
 
 # A display name for the mod
 displayName="MSU Port: Modi" #mandatory
@@ -111,6 +111,13 @@ config="minestuckuniversemoduses.mixins.json"
     modId = "jei"
     type = "optional"
     versionRange = "[17.2.0.49,)"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.msuportmodi]]
+    modId = "ftbchunks"
+    type = "optional"
+    versionRange = "[2101.1.9,)"
     ordering = "AFTER"
     side = "BOTH"
 

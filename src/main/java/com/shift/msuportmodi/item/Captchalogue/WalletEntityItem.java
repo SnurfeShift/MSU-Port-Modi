@@ -1,5 +1,6 @@
 package com.shift.msuportmodi.item.Captchalogue;
 
+import com.shift.msuportmodi.client.gui.tooltip.WalletEntityTooltip;
 import com.shift.msuportmodi.item.MSUItemComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -11,6 +12,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -18,6 +20,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
+import java.util.Optional;
 
 public class WalletEntityItem extends Item {
     public WalletEntityItem(Properties properties) {
@@ -77,7 +80,7 @@ public class WalletEntityItem extends Item {
         return InteractionResult.SUCCESS;
     }
 
-    @Override
+    /*@Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag)
     {
         CompoundTag storedTag = stack.get(MSUItemComponents.STORED_ENTITY);
@@ -91,6 +94,27 @@ public class WalletEntityItem extends Item {
 
     private static Component makeTooltipInfo(Component info) {
         return Component.literal("(").append(info).append(")").withStyle(ChatFormatting.GRAY);
+    }*/
+
+    @Override
+    public Component getName(ItemStack stack) {
+        CompoundTag tag = stack.get(MSUItemComponents.STORED_ENTITY);
+
+        if (tag != null && tag.contains("id")) {
+            String id = tag.getString("id");
+            EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.tryParse(id));
+            return type.getDescription();
+        }
+
+        return super.getName(stack);
     }
 
+    @Override
+    public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+        CompoundTag tag = stack.get(MSUItemComponents.STORED_ENTITY);
+        if(tag != null && !tag.isEmpty()) {
+            return Optional.of(new WalletEntityTooltip(tag));
+        }
+        return Optional.empty();
+    }
 }

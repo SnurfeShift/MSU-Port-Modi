@@ -1,10 +1,10 @@
 {
   "values": [
-    "minestuckuniversemoduses:array_modus_card",
-    "minestuckuniversemoduses:slime_modus_card",
-    "minestuckuniversemoduses:operandi_modus_card",
-    "minestuckuniversemoduses:communist_modus_card",
-    "minestuckuniversemoduses:wallet_modus_card",
-    "minestuckuniversemoduses:capitalist_modus_card"
+    "msuportmodi:array_modus_card",
+    "msuportmodi:slime_modus_card",
+    "msuportmodi:operandi_modus_card",
+    "msuportmodi:communist_modus_card",
+    "msuportmodi:wallet_modus_card",
+    "msuportmodi:capitalist_modus_card"
   ]
 }

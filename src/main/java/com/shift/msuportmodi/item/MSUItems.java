@@ -18,6 +18,7 @@ public class MSUItems {
     public static final DeferredItem<Item> OPERANDI_MODUS_CARD = REGISTER.register("operandi_modus_card", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> COMMUNIST_MODUS_CARD = REGISTER.register("communist_modus_card", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> CAPITALIST_MODUS_CARD = REGISTER.register("capitalist_modus_card", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> ALCHEMY_MODUS_CARD = REGISTER.register("alchemy_modus_card", () -> new Item(new Item.Properties().stacksTo(1)));
 
     //Operandi
     public static final DeferredItem<Item> OPERANDI_HOE = REGISTER.register("operandi_hoe", () -> new HoeOperandiItem(MSUTiers.OPERANDI, new Item.Properties().durability(3)));

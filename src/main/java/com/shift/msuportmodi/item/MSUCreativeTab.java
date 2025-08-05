@@ -19,7 +19,7 @@ public class MSUCreativeTab {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MSUPortModi.MOD_ID);
 
     public static final Supplier<CreativeModeTab> MAIN = REGISTER.register("main", () -> CreativeModeTab.builder()
-            .title(Component.translatable("minestuckuniversemoduses.modus_items_keys")).icon(() -> new ItemStack(MSUItems.ARRAY_MODUS_CARD.get())).displayItems(MSUCreativeTab::buildModusTab).build());
+            .title(Component.translatable("msuportmodi.modus_items_keys")).icon(() -> new ItemStack(MSUItems.ARRAY_MODUS_CARD.get())).displayItems(MSUCreativeTab::buildModusTab).build());
 
     private static void buildModusTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(MSItems.SET_MODUS_CARD.get());
@@ -34,6 +34,7 @@ public class MSUCreativeTab {
         output.accept(MSUItems.OPERANDI_MODUS_CARD.get());
         output.accept(MSUItems.COMMUNIST_MODUS_CARD.get());
         output.accept(MSUItems.CAPITALIST_MODUS_CARD.get());
+        output.accept(MSUItems.ALCHEMY_MODUS_CARD.get());
 
     }
 }

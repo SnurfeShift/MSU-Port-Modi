@@ -12,7 +12,7 @@ public final class MSUGristCostProvider {
         GristCostRecipeBuilder.of(MSUItems.COMMUNIST_MODUS_CARD).grist(BUILD, 707).grist(RUBY, 128).grist(GOLD, 128).buildFor(recipeSaver, Minestuck.MOD_ID);
         GristCostRecipeBuilder.of(MSUItems.OPERANDI_MODUS_CARD).grist(BUILD, 340).grist(GARNET, 24).grist(SHALE, 33).buildFor(recipeSaver, Minestuck.MOD_ID);
         GristCostRecipeBuilder.of(MSUItems.SLIME_MODUS_CARD).grist(BUILD, 340).grist(CAULK, 28).buildFor(recipeSaver, Minestuck.MOD_ID);
-        GristCostRecipeBuilder.of(MSUItems.WALLET_MODUS_CARD).grist(BUILD, 50000).grist(CAULK, 50000).buildFor(recipeSaver, Minestuck.MOD_ID);
-        GristCostRecipeBuilder.of(MSUItems.ARRAY_MODUS_CARD).grist(BUILD, 3000000).buildFor(recipeSaver, Minestuck.MOD_ID);
+        GristCostRecipeBuilder.of(MSUItems.WALLET_MODUS_CARD).grist(BUILD, 500).grist(CAULK, 500).buildFor(recipeSaver, Minestuck.MOD_ID);
+        GristCostRecipeBuilder.of(MSUItems.ARRAY_MODUS_CARD).grist(BUILD, 300).buildFor(recipeSaver, Minestuck.MOD_ID);
     }
 }

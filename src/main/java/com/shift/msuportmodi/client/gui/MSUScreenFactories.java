@@ -21,6 +21,7 @@ public class MSUScreenFactories {
         registerSylladexFactory(MSUModusTypes.OPERANDI, OperandiSylladexScreen::new);
         registerSylladexFactory(MSUModusTypes.COMMUNIST, CommunistSylladexScreen::new);
         registerSylladexFactory(MSUModusTypes.CAPITALIST, CapitalistSylladexScreen::new);
+        registerSylladexFactory(MSUModusTypes.ALCHEMY, AlchemySylladexScreen::new);
 
     }
 

@@ -14,6 +14,7 @@ public class MSUModusTypes {
     public static Supplier<ModusType<OperandiModus>> OPERANDI;
     public static Supplier<ModusType<CommunistModus>> COMMUNIST;
     public static Supplier<ModusType<CapitalistModus>> CAPITALIST;
+    public static Supplier<ModusType<AlchemyModus>> ALCHEMY;
 
     public static void register() {
         ARRAY = ModusTypes.REGISTER.register("msuarray", () -> new ModusType<>(ArrayModus::new, MSUItems.ARRAY_MODUS_CARD));
@@ -22,6 +23,7 @@ public class MSUModusTypes {
         OPERANDI = ModusTypes.REGISTER.register("msuoperandi", () -> new ModusType<>(OperandiModus::new, MSUItems.OPERANDI_MODUS_CARD));
         COMMUNIST = ModusTypes.REGISTER.register("msucommunist", () -> new ModusType<>(CommunistModus::new, MSUItems.COMMUNIST_MODUS_CARD));
         CAPITALIST = ModusTypes.REGISTER.register("msucapitalist", () -> new ModusType<>(CapitalistModus::new, MSUItems.CAPITALIST_MODUS_CARD));
+        ALCHEMY = ModusTypes.REGISTER.register("msualchemy", () -> new ModusType<>(AlchemyModus::new, MSUItems.ALCHEMY_MODUS_CARD));
 
     }
 }

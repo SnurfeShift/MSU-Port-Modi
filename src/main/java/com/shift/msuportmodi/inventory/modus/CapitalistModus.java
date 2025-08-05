@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class CapitalistModus extends ArrayModus {
     private static final Logger LOGGER = LoggerFactory.getLogger(CapitalistModus.class);
@@ -49,7 +50,7 @@ public class CapitalistModus extends ArrayModus {
             return ItemStack.EMPTY;
 
         //Actual Logic
-        PlayerData data = PlayerData.get(IdentifierHandler.encode(player), player.level());
+        PlayerData data = PlayerData.get(Objects.requireNonNull(IdentifierHandler.encode(player)), player.level());
         long boondollars = PlayerBoondollars.getBoondollars(data);
 
         if(id == CaptchaDeckHandler.EMPTY_SYLLADEX)

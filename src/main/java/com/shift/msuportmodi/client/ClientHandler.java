@@ -4,6 +4,10 @@ import com.mojang.blaze3d.platform.InputConstants;
 import com.mraof.minestuck.client.util.MSKeyHandler;
 import com.mraof.minestuck.player.ClientPlayerData;
 import com.shift.msuportmodi.MSUPortModi;
+import com.shift.msuportmodi.client.gui.tooltip.GristSetTooltip;
+import com.shift.msuportmodi.client.gui.tooltip.GristSetTooltipComponent;
+import com.shift.msuportmodi.client.gui.tooltip.WalletEntityTooltip;
+import com.shift.msuportmodi.client.gui.tooltip.WalletEntityTooltipComponent;
 import com.shift.msuportmodi.client.renderer.CruxiteSlimeRenderer;
 import com.shift.msuportmodi.entity.MSUEntities;
 import com.shift.msuportmodi.inventory.modus.WalletModus;
@@ -17,6 +21,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.InputEvent;
+import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
 
@@ -51,11 +56,11 @@ public class ClientHandler {
         }
     }
 
-    /*private static void captchalogueMob() {
-        if (Minecraft.getInstance().player.getMainHandItem().isEmpty()) {
-            if (ClientPlayerData.getModus() instanceof WalletModus) {
-                PacketDistributor.sendToServer(new CaptchaDeckPackets.Cap());
-            }
-        }
-    }*/
+    @SubscribeEvent
+    public static void registerTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
+        event.register(GristSetTooltip.class, gristTooltip -> new GristSetTooltipComponent(gristTooltip.getCost()));
+        event.register(WalletEntityTooltip.class, walletEntityTooltip -> new WalletEntityTooltipComponent(walletEntityTooltip.getTag()));
+    }
+
+
 }
