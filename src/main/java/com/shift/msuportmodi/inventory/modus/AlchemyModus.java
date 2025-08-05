@@ -9,14 +9,10 @@ import com.mraof.minestuck.inventory.captchalogue.ModusType;
 import com.mraof.minestuck.item.CaptchaCardItem;
 import com.mraof.minestuck.item.MSItems;
 import com.mraof.minestuck.player.GristCache;
-import com.mraof.minestuck.player.IdentifierHandler;
-import com.mraof.minestuck.player.PlayerData;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
-
-import java.util.Objects;
 
 public class AlchemyModus extends ArrayModus{
     public AlchemyModus(ModusType<? extends ArrayModus> type, LogicalSide side) {
@@ -93,7 +89,6 @@ public class AlchemyModus extends ArrayModus{
         // Cibernet originally made it save the NBT data of the item, add it later
         ItemStack item = stack.copy();
         GristSet cost = getGristCost(stack, player.level());
-        PlayerData data = PlayerData.get(Objects.requireNonNull(IdentifierHandler.encode(player)), player.level());
         GristCache cache = GristCache.get(player);
         //No need for Safety Net, putItemStack will also check if there's a cost.
         if(cache.tryTake(cost, GristHelper.EnumSource.SERVER)) {
@@ -104,8 +99,7 @@ public class AlchemyModus extends ArrayModus{
 
     public static GristSet getGristCost(ItemStack stack, Level level)
     {
-        GristSet grist = GristCostRecipe.findCostForItem(stack, GristTypes.BUILD.get(), false, level);
         // Set custom logic for custom grist cost here. For example, when eventually adding Wildcard for the card item, change it here.
-        return grist;
+        return GristCostRecipe.findCostForItem(stack, GristTypes.BUILD.get(), false, level);
     }
 }

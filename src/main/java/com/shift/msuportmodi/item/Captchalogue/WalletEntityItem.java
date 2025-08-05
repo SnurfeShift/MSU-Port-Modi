@@ -2,7 +2,6 @@ package com.shift.msuportmodi.item.Captchalogue;
 
 import com.shift.msuportmodi.client.gui.tooltip.WalletEntityTooltip;
 import com.shift.msuportmodi.item.MSUItemComponents;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -15,11 +14,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
-import java.util.List;
 import java.util.Optional;
 
 public class WalletEntityItem extends Item {
@@ -55,7 +52,6 @@ public class WalletEntityItem extends Item {
         level.addFreshEntity(entity);
 
         player.getInventory().removeItem(stack);
-        return;
     }
 
     //Incase the item somehow ends up in inventory without being removed via inventoryTick, those show data it normally should.

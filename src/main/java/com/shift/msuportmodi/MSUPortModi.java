@@ -12,7 +12,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -55,7 +54,7 @@ public class MSUPortModi {
         MSUItemComponents.REGISTRY.register(modEventBus);
     }
 
-    static void clientSetup(FMLClientSetupEvent event) {
+    /*static void clientSetup(FMLClientSetupEvent event) {
 
-    }
+    }*/
 }

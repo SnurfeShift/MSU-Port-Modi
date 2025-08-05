@@ -16,15 +16,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.Objects;
 
 public class CapitalistModus extends ArrayModus {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CapitalistModus.class);
-
     public CapitalistModus(ModusType<? extends CapitalistModus> type, LogicalSide side) {
         super(type, side);
     }

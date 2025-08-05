@@ -1,6 +1,5 @@
 package com.shift.msuportmodi.client.gui.tooltip;
 
-import com.mraof.minestuck.api.alchemy.GristSet;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 

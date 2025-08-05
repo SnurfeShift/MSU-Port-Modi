@@ -1,23 +1,13 @@
 package com.shift.msuportmodi.client.gui.modus;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mraof.minestuck.MinestuckConfig;
-import com.mraof.minestuck.api.alchemy.GristAmount;
 import com.mraof.minestuck.api.alchemy.GristSet;
-import com.mraof.minestuck.api.alchemy.GristType;
-import com.mraof.minestuck.client.util.GuiUtil;
 import com.mraof.minestuck.inventory.captchalogue.Modus;
-import com.mraof.minestuck.item.MSItems;
 import com.mraof.minestuck.network.CaptchaDeckPackets;
 import com.mraof.minestuck.player.ClientPlayerData;
 import com.shift.msuportmodi.client.gui.tooltip.GristSetTooltip;
-import com.shift.msuportmodi.client.gui.tooltip.GristSetTooltipComponent;
 import com.shift.msuportmodi.inventory.modus.AlchemyModus;
-import com.shift.msuportmodi.inventory.modus.ArrayModus;
-import com.shift.msuportmodi.inventory.modus.CapitalistModus;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.core.NonNullList;
@@ -120,7 +110,7 @@ public class AlchemySylladexScreen extends MSUSylladexScreen {
         modelPoseStack.scale(1.0F / this.scroll, 1.0F / this.scroll, 1.0F);
         RenderSystem.applyModelViewMatrix();
         this.drawGuiMap(guiGraphics, xcor, ycor);
-        ArrayList<AlchemySylladexScreen.AlchemyCard> visibleCards = new ArrayList();
+        ArrayList<AlchemySylladexScreen.AlchemyCard> visibleCards = new ArrayList<>();
 
         for(AlchemySylladexScreen.AlchemyCard card : this.cards) {
             if (card.xPos + 21 > this.mapX && card.xPos < this.mapX + this.mapWidth && card.yPos + 26 > this.mapY && card.yPos < this.mapY + this.mapHeight) {

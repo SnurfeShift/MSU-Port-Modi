@@ -1,14 +1,12 @@
 package com.shift.msuportmodi.events;
 
 import com.shift.msuportmodi.MSUPortModi;
-import com.shift.msuportmodi.inventory.modus.CapitalistModus;
 import com.shift.msuportmodi.item.Captchalogue.WalletEntityItem;
 import com.shift.msuportmodi.item.MSUItemComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;

@@ -28,7 +28,6 @@ public class GristSetTooltipComponent implements ClientTooltipComponent {
         if (cost == null || cost.isEmpty())
             return 10;
 
-        int count = cost.asAmounts().size();
         int index = 0;
         int row = 0;
 
