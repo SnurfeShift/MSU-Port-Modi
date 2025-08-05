@@ -30,7 +30,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
@@ -58,7 +57,13 @@ public record WalletCaptchaloguePacket() implements MSPacket.PlayToServer
             // Config: Entity ID && tags
             EntityType<?> entityType = living.getType();
             String entityId = BuiltInRegistries.ENTITY_TYPE.getKey(entityType).toString();
-            if (entityType.is(MSUPortModi.blacklisted) || Config.SERVER.blacklistedEntities.get().contains(entityId)) {
+
+            List<? extends String> blacklisted = Config.SERVER.blacklistedEntities.get();
+
+            boolean matchesPartialId = blacklisted.stream()
+                    .anyMatch(entry -> entityId.toLowerCase().contains(entry.toLowerCase()));
+
+            if (entityType.is(MSUPortModi.blacklisted) || matchesPartialId) {
                 return;
             }
 
@@ -86,13 +91,15 @@ public record WalletCaptchaloguePacket() implements MSPacket.PlayToServer
             Block block = state.getBlock();
             BlockEntity be = level.getBlockEntity(pos);
             BlockPos actualPos = pos;
+            assert be != null;
             String beId = Objects.requireNonNull(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(be.getType())).toString();
-            /*        List<? extends String> blacklistedBEs = Config.SERVER.blacklistedBlockEntities.get();
-                    if (blacklistedBEs.contains(beId)) {
-                        return;
-                    }*/
-            BlockEntityType<?> beType = be.getType();
-            if (beType.builtInRegistryHolder().is(MSUPortModi.blacklistedblock) || Config.SERVER.blacklistedBlockEntities.get().contains(beId)) {
+
+            List<? extends String> blacklistedBEs = Config.SERVER.blacklistedBlockEntities.get();
+
+            boolean matchesPartialId = blacklistedBEs.stream()
+                    .anyMatch(entry -> beId.toLowerCase().contains(entry.toLowerCase()));
+
+            if (matchesPartialId) {
                 return;
             }
 
