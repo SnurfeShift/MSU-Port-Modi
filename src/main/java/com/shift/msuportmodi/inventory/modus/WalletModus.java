@@ -3,18 +3,16 @@ package com.shift.msuportmodi.inventory.modus;
 import com.mraof.minestuck.inventory.captchalogue.CaptchaDeckHandler;
 import com.mraof.minestuck.inventory.captchalogue.ModusType;
 import com.mraof.minestuck.item.MSItems;
+import com.shift.msuportmodi.Config;
 import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.LogicalSide;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 //This should be able to catalogue entities soon
 public class WalletModus extends ArrayModus {
-    //This should be Configurable
-    public static final int CARD_LIMIT = 10;
-    private static final Logger LOGGER = LoggerFactory.getLogger(WalletModus.class);
+
+    int CARD_LIMIT = Config.SERVER.walletModusSize.get();
 
     public WalletModus(ModusType<? extends WalletModus> type, LogicalSide side) {
         super(type, side);

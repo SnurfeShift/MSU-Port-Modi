@@ -14,5 +14,10 @@ public final class MSUGristCostProvider {
         GristCostRecipeBuilder.of(MSUItems.SLIME_MODUS_CARD).grist(BUILD, 340).grist(CAULK, 28).buildFor(recipeSaver, Minestuck.MOD_ID);
         GristCostRecipeBuilder.of(MSUItems.WALLET_MODUS_CARD).grist(BUILD, 500).grist(CAULK, 500).buildFor(recipeSaver, Minestuck.MOD_ID);
         GristCostRecipeBuilder.of(MSUItems.ARRAY_MODUS_CARD).grist(BUILD, 300).buildFor(recipeSaver, Minestuck.MOD_ID);
+        GristCostRecipeBuilder.of(MSUItems.ALCHEMY_MODUS_CARD).grist(BUILD, 2500).grist(URANIUM, 640).grist(ARTIFACT, 4).buildFor(recipeSaver, Minestuck.MOD_ID);
+        GristCostRecipeBuilder.of(MSUItems.WILDMAGIC_MODUS_CARD).grist(AMETHYST, 65).grist(BUILD, 310).grist(GARNET, 32).buildFor(recipeSaver, Minestuck.MOD_ID);
+        GristCostRecipeBuilder.of(MSUItems.CYCLONE_MODUS_CARD).grist(BUILD, 16).buildFor(recipeSaver, Minestuck.MOD_ID);
+        GristCostRecipeBuilder.of(MSUItems.GAMBLING_MODUS_CARD).grist(BUILD, 440).grist(DIAMOND, 10).grist(GOLD, 70).buildFor(recipeSaver, Minestuck.MOD_ID);
+
     }
 }

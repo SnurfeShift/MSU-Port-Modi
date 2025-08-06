@@ -32,7 +32,6 @@ public class AlchemySylladexScreen extends MSUSylladexScreen {
     protected ArrayList<AlchemySylladexScreen.AlchemyCard> cards = new ArrayList();
     protected Modus modus;
     public AlchemySylladexScreen(Modus modus) {
-        super(modus);
         this.modus = modus;
         textureIndex = 19;
     }

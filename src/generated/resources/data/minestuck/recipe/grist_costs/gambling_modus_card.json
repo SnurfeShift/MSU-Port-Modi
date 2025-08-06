@@ -1,0 +1,11 @@
+{
+  "type": "minestuck:grist_cost",
+  "grist_cost": {
+    "minestuck:build": 440,
+    "minestuck:diamond": 10,
+    "minestuck:gold": 70
+  },
+  "ingredient": {
+    "item": "msuportmodi:gambling_modus_card"
+  }
+}

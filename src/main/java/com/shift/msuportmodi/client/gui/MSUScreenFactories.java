@@ -22,7 +22,9 @@ public class MSUScreenFactories {
         registerSylladexFactory(MSUModusTypes.COMMUNIST, CommunistSylladexScreen::new);
         registerSylladexFactory(MSUModusTypes.CAPITALIST, CapitalistSylladexScreen::new);
         registerSylladexFactory(MSUModusTypes.ALCHEMY, AlchemySylladexScreen::new);
+        registerSylladexFactory(MSUModusTypes.WILDMAGIC, WildMagicSylladexScreen::new);
+        registerSylladexFactory(MSUModusTypes.CYCLONE, CycloneSylladexScreen::new);
+        registerSylladexFactory(MSUModusTypes.GAMBLING, GamblingSylladexScreen::new);
 
     }
-
 }

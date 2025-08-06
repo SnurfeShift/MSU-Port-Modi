@@ -10,6 +10,9 @@
   "item.msuportmodi.communist_modus_card": "ModUs",
   "item.msuportmodi.capitalist_modus_card": "Capitalist Modus",
   "item.msuportmodi.alchemy_modus_card": "Alchemodus",
+  "item.msuportmodi.wildmagic_modus_card": "Wild Magic Modus",
+  "item.msuportmodi.cyclone_modus_card": "Cyclone Modus",
+  "item.msuportmodi.gambling_modus_card": "Roulette Modus",
 
   //Operandi Items
   "item.msuportmodi.operandi_hoe": "Operandi Hoe",
@@ -23,7 +26,10 @@
 
   //Regular Item
   "item.msuportmodi.wallet_entity_item": "Entity",
-  //
+
+  //GUI
+  "gui.modus.spin": "Spin the Wheel",
+  "gui.modus.spinning": "The Wheel is Spinning",
   "examplemod.configuration.title": "Example Mod Configs",
   "examplemod.configuration.section.examplemod.common.toml": "Example Mod Configs",
   "examplemod.configuration.section.examplemod.common.toml.title": "Example Mod Configs",

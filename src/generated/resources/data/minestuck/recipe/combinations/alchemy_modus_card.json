@@ -4,8 +4,8 @@
     "tag": "minestuck:modus_card"
   },
   "input2": {
-    "item": "minecraft:leather"
+    "item": "minestuck:alchemiter"
   },
-  "mode": "and",
-  "output": "msuportmodi:wallet_modus_card"
+  "mode": "or",
+  "output": "msuportmodi:alchemy_modus_card"
 }

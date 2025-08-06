@@ -9,7 +9,6 @@ public class CommunistSylladexScreen extends MSUSylladexScreen {
     protected Modus modus;
 
     public CommunistSylladexScreen(Modus modus) {
-        super(modus);
         this.modus = (CommunistModus) modus;
         textureIndex = 3;
     }

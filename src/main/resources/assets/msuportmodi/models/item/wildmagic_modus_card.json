@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "msuportmodi:item/wild_magic_modus"
+  }
+}

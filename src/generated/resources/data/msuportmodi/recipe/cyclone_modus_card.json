@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minestuck:raw_cruxite"
+    },
+    "$": {
+      "item": "minestuck:captcha_card"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#$#",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "msuportmodi:cyclone_modus_card"
+  }
+}

@@ -18,12 +18,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.network.PacketDistributor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CommunistModus extends Modus {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CommunistModus.class);
     CommunistModusData data;
+    //Size is only so when the modus is changed to a normal one, it doesn't eat away the players previous modus size.
+    protected int size;
     //Client side
     private NonNullList<ItemStack> clientList = NonNullList.create();
     protected boolean changed;
@@ -34,6 +33,7 @@ public class CommunistModus extends Modus {
 
     @Override
     public void initModus(ItemStack itemStack, ServerPlayer player, NonNullList<ItemStack> prev, int size) {
+        this.size = size;
         if(player.level().isClientSide) {
             changed = true;
             this.data = CommunistModusData.get(player.server);
@@ -150,7 +150,7 @@ public class CommunistModus extends Modus {
 
     @Override
     public int getSize() {
-        return 0;
+        return size;
     }
 
     public static void updateClientList(CommunistUpdatePacket packet) {
@@ -160,6 +160,7 @@ public class CommunistModus extends Modus {
             Modus modus = ClientPlayerData.getModus();
 
             if(modus instanceof CommunistModus communistModus) {
+                assert mc.level != null;
                 HolderLookup.Provider provider = mc.level.registryAccess();
                 communistModus.setClientListFromTag(packet.items(), provider);
             }

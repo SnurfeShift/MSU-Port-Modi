@@ -2,6 +2,7 @@ package com.shift.msuportmodi.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mraof.minestuck.client.util.MSKeyHandler;
+import com.mraof.minestuck.inventory.captchalogue.Modus;
 import com.mraof.minestuck.player.ClientPlayerData;
 import com.shift.msuportmodi.MSUPortModi;
 import com.shift.msuportmodi.client.gui.tooltip.GristSetTooltip;
@@ -10,6 +11,7 @@ import com.shift.msuportmodi.client.gui.tooltip.WalletEntityTooltip;
 import com.shift.msuportmodi.client.gui.tooltip.WalletEntityTooltipComponent;
 import com.shift.msuportmodi.client.renderer.CruxiteSlimeRenderer;
 import com.shift.msuportmodi.entity.MSUEntities;
+import com.shift.msuportmodi.inventory.modus.CycloneModus;
 import com.shift.msuportmodi.inventory.modus.WalletModus;
 import com.shift.msuportmodi.network.WalletCaptchaloguePacket;
 import net.minecraft.client.Minecraft;
@@ -19,6 +21,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
@@ -47,6 +50,7 @@ public class ClientHandler {
         InputConstants.Key input = InputConstants.getKey(event.getKey(), event.getScanCode());
         if(event.getAction() == GLFW.GLFW_PRESS && Minecraft.getInstance().screen == null) {
             if (MSKeyHandler.captchaKey.isActiveAndMatches(input)) {
+                assert Minecraft.getInstance().player != null;
                 if (Minecraft.getInstance().player.getMainHandItem().isEmpty()) {
                     if (ClientPlayerData.getModus() instanceof WalletModus) {
                         PacketDistributor.sendToServer(new WalletCaptchaloguePacket());
@@ -62,5 +66,15 @@ public class ClientHandler {
         event.register(WalletEntityTooltip.class, walletEntityTooltip -> new WalletEntityTooltipComponent(walletEntityTooltip.getTag()));
     }
 
+    @SubscribeEvent
+    public static void clientTick(ClientTickEvent.Pre event) {
+        Modus modus = ClientPlayerData.getModus();
+
+        if(modus != null) {
+            if(modus instanceof CycloneModus cyclone) {
+                cyclone.cycle();
+            }
+        }
+    }
 
 }

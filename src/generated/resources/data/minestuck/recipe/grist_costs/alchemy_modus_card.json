@@ -1,0 +1,11 @@
+{
+  "type": "minestuck:grist_cost",
+  "grist_cost": {
+    "minestuck:artifact": 4,
+    "minestuck:build": 2500,
+    "minestuck:uranium": 640
+  },
+  "ingredient": {
+    "item": "msuportmodi:alchemy_modus_card"
+  }
+}

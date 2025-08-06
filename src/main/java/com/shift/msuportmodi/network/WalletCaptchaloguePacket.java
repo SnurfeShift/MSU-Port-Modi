@@ -1,6 +1,5 @@
 package com.shift.msuportmodi.network;
 
-import com.mojang.logging.LogUtils;
 import com.mraof.minestuck.advancements.MSCriteriaTriggers;
 import com.mraof.minestuck.block.machine.*;
 import com.mraof.minestuck.inventory.captchalogue.CaptchaDeckHandler;
@@ -36,7 +35,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import org.slf4j.Logger;
 
 import java.util.*;
 
@@ -44,7 +42,6 @@ public record WalletCaptchaloguePacket() implements MSPacket.PlayToServer
 {
     public static final Type<WalletCaptchaloguePacket> ID = new Type<>(MSUPortModi.id("wallet_captchalogue"));
     public static final StreamCodec<RegistryFriendlyByteBuf, WalletCaptchaloguePacket> STREAM_CODEC = StreamCodec.unit(new WalletCaptchaloguePacket());
-    public static final Logger LOGGER = LogUtils.getLogger();
 
     @Override
     public void execute(IPayloadContext context, ServerPlayer player)
@@ -91,7 +88,10 @@ public record WalletCaptchaloguePacket() implements MSPacket.PlayToServer
             Block block = state.getBlock();
             BlockEntity be = level.getBlockEntity(pos);
             BlockPos actualPos = pos;
-            assert be != null;
+            if (be == null) {
+                return;
+            }
+
             String beId = Objects.requireNonNull(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(be.getType())).toString();
 
             List<? extends String> blacklistedBEs = Config.SERVER.blacklistedBlockEntities.get();

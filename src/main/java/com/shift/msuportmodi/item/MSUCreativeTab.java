@@ -35,6 +35,9 @@ public class MSUCreativeTab {
         output.accept(MSUItems.COMMUNIST_MODUS_CARD.get());
         output.accept(MSUItems.CAPITALIST_MODUS_CARD.get());
         output.accept(MSUItems.ALCHEMY_MODUS_CARD.get());
+        output.accept(MSUItems.WILDMAGIC_MODUS_CARD.get());
+        output.accept(MSUItems.CYCLONE_MODUS_CARD.get());
+        output.accept(MSUItems.GAMBLING_MODUS_CARD.get());
 
     }
 }

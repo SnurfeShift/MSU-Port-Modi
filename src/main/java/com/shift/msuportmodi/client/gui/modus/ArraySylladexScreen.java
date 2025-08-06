@@ -9,7 +9,6 @@ public class ArraySylladexScreen extends MSUSylladexScreen {
     protected Modus modus;
 
     public ArraySylladexScreen(Modus modus) {
-        super(modus);
         this.modus = (ArrayModus) modus;
         textureIndex = 42;
     }

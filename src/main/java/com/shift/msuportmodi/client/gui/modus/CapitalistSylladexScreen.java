@@ -30,7 +30,6 @@ public class CapitalistSylladexScreen extends MSUSylladexScreen {
     protected ArrayList<GuiPricedCard> cards = new ArrayList();
     protected Modus modus;
     public CapitalistSylladexScreen(Modus modus) {
-        super(modus);
         this.modus = modus;
         textureIndex = 2;
     }
