@@ -5,6 +5,10 @@
     "msuportmodi:operandi_modus_card",
     "msuportmodi:communist_modus_card",
     "msuportmodi:wallet_modus_card",
-    "msuportmodi:capitalist_modus_card"
+    "msuportmodi:capitalist_modus_card",
+    "msuportmodi:wildmagic_modus_card",
+    "msuportmodi:cyclone_modus_card",
+    "msuportmodi:gambling_modus_card",
+    "msuportmodi:alchemy_modus_card"
   ]
 }

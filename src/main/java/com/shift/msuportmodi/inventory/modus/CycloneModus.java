@@ -5,12 +5,12 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.neoforged.fml.LogicalSide;
 
-public class CycloneModus extends ArrayModus {
+public class CycloneModus extends BaseModus {
 
     public float cyclePosition = -20;
     public static final float cycleSpeed = 0.01f;
 
-    public CycloneModus(ModusType<? extends ArrayModus> type, LogicalSide side) {
+    public CycloneModus(ModusType<? extends BaseModus> type, LogicalSide side) {
         super(type, side);
     }
 

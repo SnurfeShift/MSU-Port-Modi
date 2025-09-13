@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ModusTypesMixin {
 
     @Inject(method = "getTypeFromItem", at = @At("RETURN"), cancellable = true)
-    private static void extendToMSUItems(Item item, CallbackInfoReturnable<ModusType<?>> cir) {
+    private static void extendToItems(Item item, CallbackInfoReturnable<ModusType<?>> cir) {
         if (cir.getReturnValue() == null) {
             ModusType<?> msuType = MSUModusTypes.getTypeFromItem(item);
             if (msuType != null) {

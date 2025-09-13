@@ -1,4 +1,4 @@
-package com.shift.msuportmodi.data.tag;
+package com.shift.msuportmodi.datagen.tag;
 
 import com.shift.msuportmodi.MSUPortModi;
 import com.shift.msuportmodi.item.MSUItems;
@@ -15,6 +15,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.CompletableFuture;
 
 import static com.mraof.minestuck.util.MSTags.Items.MODUS_CARD;
+import static com.mraof.minestuck.util.MSTags.Items.UNREADABLE;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -31,9 +32,11 @@ public class MSUItemTagsProvider extends ItemTagsProvider {
         tag(MODUS_CARD).add(MSUItems.COMMUNIST_MODUS_CARD.get());
         tag(MODUS_CARD).add(MSUItems.WALLET_MODUS_CARD.get());
         tag(MODUS_CARD).add(MSUItems.CAPITALIST_MODUS_CARD.get());
+        tag(MODUS_CARD).add(MSUItems.WILDMAGIC_MODUS_CARD.get());
+        tag(MODUS_CARD).add(MSUItems.CYCLONE_MODUS_CARD.get());
+        tag(MODUS_CARD).add(MSUItems.GAMBLING_MODUS_CARD.get());
+        tag(MODUS_CARD).add(MSUItems.ALCHEMY_MODUS_CARD.get());
 
-
-
-
+        tag(UNREADABLE).add(MSUItems.WALLET_ENTITY_ITEM.get());
     }
 }

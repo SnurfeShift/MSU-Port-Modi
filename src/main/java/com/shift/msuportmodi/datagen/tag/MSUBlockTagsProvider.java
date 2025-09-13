@@ -1,4 +1,4 @@
-package com.shift.msuportmodi.data.tag;
+package com.shift.msuportmodi.datagen.tag;
 
 import com.shift.msuportmodi.MSUPortModi;
 import net.minecraft.MethodsReturnNonnullByDefault;

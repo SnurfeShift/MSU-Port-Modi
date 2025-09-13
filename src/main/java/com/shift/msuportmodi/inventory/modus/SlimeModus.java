@@ -12,17 +12,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.LogicalSide;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
-public class SlimeModus extends ArrayModus {
+public class SlimeModus extends BaseModus {
     public SlimeModus(ModusType<? extends SlimeModus> type, LogicalSide side) {
         super(type, side);
     }
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(SlimeModus.class);
 
     @Override
     public ItemStack getItem(ServerPlayer player, int id, boolean asCard)

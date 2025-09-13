@@ -24,18 +24,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AirBlock;
+import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-
+import com.shift.msuportmodi.util.RaycastUtil;
 import java.util.*;
 
 public record WalletCaptchaloguePacket() implements MSPacket.PlayToServer
@@ -46,170 +43,145 @@ public record WalletCaptchaloguePacket() implements MSPacket.PlayToServer
     @Override
     public void execute(IPayloadContext context, ServerPlayer player)
     {
-        Entity lookedAt = getLookedEntity(player, 4);
-        if (lookedAt instanceof LivingEntity living
-                && !(lookedAt instanceof Player)
-                && FTBCompat.canInteract(player, living.blockPosition(), living)
-        ) {
-            // Config: Entity ID && tags
-            EntityType<?> entityType = living.getType();
-            String entityId = BuiltInRegistries.ENTITY_TYPE.getKey(entityType).toString();
-
-            List<? extends String> blacklisted = Config.SERVER.blacklistedEntities.get();
-
-            boolean matchesPartialId = blacklisted.stream()
-                    .anyMatch(entry -> entityId.toLowerCase().contains(entry.toLowerCase()));
-
-            if (entityType.is(MSUPortModi.blacklisted) || matchesPartialId) {
-                return;
-            }
-
-            // Logic
-            ItemStack stack = createEntityItem(living);
-
-            Modus modus = CaptchaDeckHandler.getModus(player);
-            if(modus == null)
-                return;
-
-            boolean result = modus.putItemStack(player, stack.copy());
-            if(result) {
-                MSCriteriaTriggers.CAPTCHALOGUE.get().trigger(player, modus, stack);
-                stack.setCount(0);
-                living.discard();
-                modus.checkAndResend(player);
-            }
-        } else {
-            BlockPos pos = getLookedBlockPos(player, 4);
-            if (pos == null)
-                return;
-
-            Level level = player.level();
-            BlockState state = level.getBlockState(pos);
-            Block block = state.getBlock();
-            BlockEntity be = level.getBlockEntity(pos);
-            BlockPos actualPos = pos;
-            if (be == null) {
-                return;
-            }
-
-            String beId = Objects.requireNonNull(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(be.getType())).toString();
-
-            List<? extends String> blacklistedBEs = Config.SERVER.blacklistedBlockEntities.get();
-
-            boolean matchesPartialId = blacklistedBEs.stream()
-                    .anyMatch(entry -> beId.toLowerCase().contains(entry.toLowerCase()));
-
-            if (matchesPartialId) {
-                return;
-            }
-
-            if (FTBCompat.canModify(player, pos)) {
-                switch (block) {
-                    case AlchemiterBlock destroyable -> {
-                        Optional<BlockPos> mainPos = destroyable.getMainPos(state, pos, level);
-                        if (mainPos.isPresent()) {
-                            actualPos = mainPos.get();
-                            be = level.getBlockEntity(actualPos);
-                        }
-                    }
-                    case CruxtruderBlock destroyable -> {
-                        actualPos = destroyable.getMainPos(state, pos);
-                        be = level.getBlockEntity(actualPos);
-                    }
-                    case TotemLatheBlock destroyable -> {
-                        actualPos = destroyable.getMainPos(state, pos);
-                        be = level.getBlockEntity(actualPos);
-                    }
-                    case PunchDesignixBlock destroyable -> {
-                        actualPos = destroyable.getMainPos(state, pos);
-                        be = level.getBlockEntity(actualPos);
-                    }
-                    default -> {
-                    }
-                }
-
-                if (be != null) {
-                    ItemStack stack = captchalogueTileEntity(level, actualPos);
-                    if (stack.isEmpty())
-                        return;
-
-                    Modus modus = CaptchaDeckHandler.getModus(player);
-                    if (modus == null)
-                        return;
-
-                    boolean result = modus.putItemStack(player, stack.copy());
-                    if (result) {
-                        MSCriteriaTriggers.CAPTCHALOGUE.get().trigger(player, modus, stack);
-                        stack.setCount(0);
-
-                        switch (block) {
-                            case AlchemiterBlock destroyable -> destroyable.destroyFull(state, level, pos);
-                            case CruxtruderBlock destroyable -> destroyable.destroyFull(state, level, pos);
-                            case TotemLatheBlock destroyable -> destroyable.destroyFull(state, level, pos);
-                            case PunchDesignixBlock destroyable -> destroyable.destroyFull(state, level, pos);
-                            default -> {
-                                level.removeBlockEntity(actualPos);
-                                level.destroyBlock(actualPos, false);
-                            }
-                        }
-
-                        modus.checkAndResend(player);
-                    }
-                }
-            }
+        if (!captchalogueEntity(player)) {
+            captchalogueBlockEntity(player);
         }
     }
 
-    public static ItemStack createEntityItem(LivingEntity entity)
+    private boolean captchalogueEntity(ServerPlayer player) {
+        Entity lookedAt = RaycastUtil.getLookedEntity(player, 4);
+        if (!(lookedAt instanceof LivingEntity living) || lookedAt instanceof Player) return false;
+        if (!FTBCompat.canInteract(player, living.blockPosition(), living)) return false;
+        if (Config.SERVER.shouldEntityUseModify.get())
+            if (!FTBCompat.canModify(player, living.blockPosition(), living)) return false;
+
+        //---------Entity Blacklist Logic------------
+        EntityType<?> entityType = living.getType();
+        String entityId = BuiltInRegistries.ENTITY_TYPE.getKey(entityType).toString();
+        List<? extends String> blacklisted = Config.SERVER.blacklistedEntities.get();
+
+        boolean matchesWildcardId = blacklisted.stream()
+                .anyMatch(entry -> wildCardMatch(entityId, entry));
+
+        if (entityType.is(MSUPortModi.blacklisted) || matchesWildcardId) return false;
+        //---------------------Logic-----------------
+        ItemStack stack = getEntityItem(living);
+
+        Modus modus = CaptchaDeckHandler.getModus(player);
+        if (modus == null) return false;
+
+        if (modus.putItemStack(player, stack.copy())) {
+            MSCriteriaTriggers.CAPTCHALOGUE.get().trigger(player, modus, stack);
+            stack.setCount(0);
+            living.discard();
+            modus.checkAndResend(player);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean captchalogueBlockEntity(ServerPlayer player) {
+        if (!Config.SERVER.canCaptchalogueBlockEntities.get()) return false;
+
+        BlockPos pos = RaycastUtil.getLookedBlockPos(player, 4);
+        if (pos == null) return false;
+
+        Level level = player.level();
+        BlockState state = level.getBlockState(pos);
+        Block block = state.getBlock();
+        BlockEntity be = level.getBlockEntity(pos);
+        BlockPos actualPos = pos;
+
+        if (be == null) return false;
+        //---------Entity Blacklist Logic------------
+        String beId = Objects.requireNonNull(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(be.getType())).toString();
+        List<? extends String> blacklistedBEs = Config.SERVER.blacklistedBlockEntities.get();
+
+        boolean matchesPartialId = blacklistedBEs.stream().anyMatch(entry -> wildCardMatch(beId, entry));
+
+        if (matchesPartialId) return false;
+        if (!FTBCompat.canModify(player, pos)) return false;
+        //-------------------------------------------
+        switch (block) {
+            case AlchemiterBlock destroyable -> {
+                Optional<BlockPos> mainPos = destroyable.getMainPos(state, pos, level);
+                if (mainPos.isPresent()) {
+                    actualPos = mainPos.get();
+                    be = level.getBlockEntity(actualPos);
+                }
+            }
+            case CruxtruderBlock destroyable -> {
+                actualPos = destroyable.getMainPos(state, pos);
+                be = level.getBlockEntity(actualPos);
+            }
+            case TotemLatheBlock destroyable -> {
+                actualPos = destroyable.getMainPos(state, pos);
+                be = level.getBlockEntity(actualPos);
+            }
+            case PunchDesignixBlock destroyable -> {
+                actualPos = destroyable.getMainPos(state, pos);
+                be = level.getBlockEntity(actualPos);
+            }
+            default -> {}
+        }
+
+        if (be == null) return false;
+
+        ItemStack stack = getBlockEntityItem(level, actualPos);
+        if (stack.isEmpty()) return false;
+
+        Modus modus = CaptchaDeckHandler.getModus(player);
+        if (modus == null) return false;
+
+        if (modus.putItemStack(player, stack.copy())) {
+            MSCriteriaTriggers.CAPTCHALOGUE.get().trigger(player, modus, stack);
+            stack.setCount(0);
+
+            if (block instanceof BedBlock) {
+                BedPart part = state.getValue(BedBlock.PART);
+                if (part == BedPart.FOOT) {
+                    Direction facing = state.getValue(BedBlock.FACING);
+                    actualPos = pos.relative(facing);
+                }
+            }
+
+            switch (block) {
+                case AlchemiterBlock destroyable -> destroyable.destroyFull(state, level, pos);
+                case CruxtruderBlock destroyable -> destroyable.destroyFull(state, level, pos);
+                case TotemLatheBlock destroyable -> destroyable.destroyFull(state, level, pos);
+                case PunchDesignixBlock destroyable -> destroyable.destroyFull(state, level, pos);
+                default -> {
+                    level.removeBlockEntity(actualPos);
+                    level.destroyBlock(actualPos, false);
+                }
+            }
+
+            modus.checkAndResend(player);
+            return true;
+        }
+
+        return false;
+    }
+
+    private static boolean wildCardMatch(String id, String pattern) {
+        String regex = pattern.replace(".", "\\.").replace("*", ".*");
+        return id.matches("(?i)" + regex);
+    }
+
+    public static ItemStack getEntityItem(LivingEntity entity)
     {
         String entityId = EntityType.getKey(entity.getType()).toString();
 
         CompoundTag tag = new CompoundTag();
         entity.saveWithoutId(tag);
         tag.putString("id", entityId);
-
         ItemStack stack = new ItemStack(MSUItems.WALLET_ENTITY_ITEM.get());
         stack.set(MSUItemComponents.STORED_ENTITY, tag);
 
         return stack;
     }
 
-    public Entity getLookedEntity(ServerPlayer player, double range) {
-        Level level = player.level();
-        Vec3 eyePos = player.getEyePosition(1.0F);
-        Vec3 lookVec = player.getLookAngle();
-        Vec3 reachVec = eyePos.add(lookVec.scale(range));
-        //There surely is a better way to do this, ping me @ discord if you see this and have a better idea.
-        BlockHitResult blockHit = level.clip(new ClipContext(eyePos, reachVec, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
-
-        double blockDist = blockHit.getType() != HitResult.Type.MISS ? blockHit.getLocation().distanceTo(eyePos) : range;
-
-        AABB playerbox = player.getBoundingBox().expandTowards(lookVec.scale(range));
-
-        return level.getEntities(player, playerbox, e -> e instanceof LivingEntity && e != player)
-                .stream()
-                .flatMap(e -> e.getBoundingBox().clip(eyePos, reachVec).stream().map(hit -> new AbstractMap.SimpleEntry<>(e, hit)))
-                .filter(pair -> eyePos.distanceTo(pair.getValue()) < blockDist)
-                .min(Comparator.comparingDouble(pair -> eyePos.distanceTo(pair.getValue())))
-                .map(Map.Entry::getKey)
-                .orElse(null);
-    }
-
-    public BlockPos getLookedBlockPos(ServerPlayer player, double range) {
-        Level level = player.level();
-        Vec3 eyePos = player.getEyePosition(1.0F);
-        Vec3 lookVec = player.getLookAngle();
-        Vec3 reachVec = eyePos.add(lookVec.scale(range));
-
-        BlockHitResult blockHit = level.clip(new ClipContext(eyePos, reachVec, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
-
-        if (blockHit.getType() == HitResult.Type.BLOCK) {
-            return blockHit.getBlockPos();
-        }
-        return null;
-    }
-
-    public static ItemStack captchalogueTileEntity(Level level, BlockPos pos) {
+    public static ItemStack getBlockEntityItem(Level level, BlockPos pos) {
         BlockState state = level.getBlockState(pos);
         Block block = state.getBlock();
         BlockEntity be = level.getBlockEntity(pos);

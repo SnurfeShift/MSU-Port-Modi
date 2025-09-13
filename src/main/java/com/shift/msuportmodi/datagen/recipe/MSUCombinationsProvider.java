@@ -1,4 +1,4 @@
-package com.shift.msuportmodi.data.recipe;
+package com.shift.msuportmodi.datagen.recipe;
 
 import com.mraof.minestuck.Minestuck;
 import com.mraof.minestuck.api.alchemy.recipe.combination.CombinationRecipeBuilder;
@@ -13,7 +13,7 @@ public class MSUCombinationsProvider {
         //Or = Punch Designix
         //And = Totem Lathe
         CombinationRecipeBuilder.of(MSUItems.COMMUNIST_MODUS_CARD).input(MSTags.Items.MODUS_CARD).and().input(Items.CHEST).buildFor(consumer, Minestuck.MOD_ID);
-        CombinationRecipeBuilder.of(MSUItems.CAPITALIST_MODUS_CARD).input(MSTags.Items.MODUS_CARD).or().input(MSItems.BOONDOLLARS).buildFor(consumer, Minestuck.MOD_ID);
+        CombinationRecipeBuilder.of(MSUItems.CAPITALIST_MODUS_CARD).input(MSTags.Items.MODUS_CARD).or().input(Items.GOLD_INGOT).buildFor(consumer, Minestuck.MOD_ID);
         CombinationRecipeBuilder.of(MSUItems.SLIME_MODUS_CARD).input(MSTags.Items.MODUS_CARD).and().input(Items.SLIME_BALL).buildFor(consumer, Minestuck.MOD_ID);
         CombinationRecipeBuilder.of(MSUItems.OPERANDI_MODUS_CARD).input(MSTags.Items.MODUS_CARD).and().input(Items.WOODEN_PICKAXE).buildFor(consumer, Minestuck.MOD_ID);
         CombinationRecipeBuilder.of(MSUItems.ARRAY_MODUS_CARD).input(MSTags.Items.MODUS_CARD).and().input(MSItems.RAW_CRUXITE).buildFor(consumer, Minestuck.MOD_ID);

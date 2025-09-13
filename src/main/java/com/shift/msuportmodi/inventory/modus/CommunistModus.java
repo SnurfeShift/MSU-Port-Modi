@@ -7,6 +7,7 @@ import com.mraof.minestuck.inventory.captchalogue.ModusType;
 import com.mraof.minestuck.item.CaptchaCardItem;
 import com.mraof.minestuck.item.MSItems;
 import com.mraof.minestuck.player.ClientPlayerData;
+import com.shift.msuportmodi.inventory.modus.modusdata.CommunistModusData;
 import com.shift.msuportmodi.network.CommunistRequestPacket;
 import com.shift.msuportmodi.network.CommunistUpdatePacket;
 import net.minecraft.client.Minecraft;

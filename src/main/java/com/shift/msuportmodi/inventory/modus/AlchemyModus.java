@@ -14,8 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.LogicalSide;
 
-public class AlchemyModus extends ArrayModus{
-    public AlchemyModus(ModusType<? extends ArrayModus> type, LogicalSide side) {
+public class AlchemyModus extends BaseModus {
+    public AlchemyModus(ModusType<? extends BaseModus> type, LogicalSide side) {
         super(type, side);
     }
 

@@ -1,4 +1,4 @@
-package com.shift.msuportmodi.item.Captchalogue;
+package com.shift.msuportmodi.util;
 
 import com.shift.msuportmodi.item.Components.OperandiStoredItemComponent;
 import com.shift.msuportmodi.item.MSUItemComponents;
@@ -12,7 +12,7 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 // Use as utility to make other operandi items.
-public class OperandiUtility {
+public class OperandiUtil {
 
     public static void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag)
     {

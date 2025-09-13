@@ -22,4 +22,11 @@ public class FTBCompat {
         }
         return true;
     }
+
+    public static boolean canModify(ServerPlayer player, BlockPos pos, LivingEntity entity) {
+        if(ModList.get().isLoaded("ftbchunks")) {
+            return !FTBChunksAPI.api().getManager().shouldPreventInteraction(player, InteractionHand.MAIN_HAND, pos, Protection.EDIT_BLOCK, entity);
+        }
+        return true;
+    }
 }

@@ -2,7 +2,7 @@ package com.shift.msuportmodi.network;
 
 import com.mraof.minestuck.network.MSPacket;
 import com.shift.msuportmodi.MSUPortModi;
-import com.shift.msuportmodi.inventory.modus.CommunistModusData;
+import com.shift.msuportmodi.inventory.modus.modusdata.CommunistModusData;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -26,5 +26,3 @@ public record CommunistRequestPacket() implements MSPacket.PlayToServer
         return ID;
     }
 }
-
-// Custom packet may not be necessary as it's only here to updateContent()

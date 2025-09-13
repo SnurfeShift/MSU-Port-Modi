@@ -15,14 +15,13 @@ import org.slf4j.LoggerFactory;
 
 @EventBusSubscriber(modid = MSUPortModi.MOD_ID)
 public class ItemEntitySpawnEventHandler {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ItemEntitySpawnEventHandler.class);
 
     @SubscribeEvent
     public static void onItemEntitySpawn(EntityJoinLevelEvent event) {
-        if (!(event.getEntity() instanceof ItemEntity itemEntity))
+        if (!(event.getEntity() instanceof ItemEntity item))
             return;
 
-        ItemStack stack = itemEntity.getItem();
+        ItemStack stack = item.getItem();
         if (!(stack.getItem() instanceof WalletEntityItem))
             return;
 
@@ -31,7 +30,7 @@ public class ItemEntitySpawnEventHandler {
             return;
 
         Entity entity = WalletEntityItem.getEntity(tag, stack, event.getLevel());
-        entity.moveTo(itemEntity.position());
+        entity.moveTo(item.position());
         event.getLevel().addFreshEntity(entity);
 
         event.setCanceled(true);

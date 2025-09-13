@@ -1,36 +1,37 @@
 package com.shift.msuportmodi.item.Captchalogue;
 
 import com.shift.msuportmodi.item.Components.OperandiStoredItemComponent;
+import com.shift.msuportmodi.util.OperandiUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class PickaxeOperandiItem extends PickaxeItem {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PickaxeOperandiItem.class);
-
-    public PickaxeOperandiItem(Tier tier, Properties properties) {
-        super(tier, properties);
+public class ToolOperandiItem extends DiggerItem {
+    public ToolOperandiItem(Tier tier, TagKey<Block> blocks, Properties properties) {
+        super(tier, blocks, properties);
         properties.durability(3);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag)
     {
-        OperandiUtility.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        OperandiUtil.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 
     @Override

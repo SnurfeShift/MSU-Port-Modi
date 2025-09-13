@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.LogicalSide;
 
 //This should be able to catalogue entities soon
-public class WalletModus extends ArrayModus {
+public class WalletModus extends BaseModus {
 
     int CARD_LIMIT = Config.SERVER.walletModusSize.get();
 

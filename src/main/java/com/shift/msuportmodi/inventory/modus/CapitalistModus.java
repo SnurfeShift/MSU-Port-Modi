@@ -20,7 +20,7 @@ import net.neoforged.fml.LogicalSide;
 import java.util.Map;
 import java.util.Objects;
 
-public class CapitalistModus extends ArrayModus {
+public class CapitalistModus extends BaseModus {
     public CapitalistModus(ModusType<? extends CapitalistModus> type, LogicalSide side) {
         super(type, side);
     }

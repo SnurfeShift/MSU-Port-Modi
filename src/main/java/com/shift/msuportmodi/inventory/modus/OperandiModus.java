@@ -5,23 +5,22 @@ import com.mraof.minestuck.inventory.captchalogue.ModusType;
 import com.mraof.minestuck.item.CaptchaCardItem;
 import com.mraof.minestuck.item.MSItems;
 import com.shift.msuportmodi.item.MSUItems;
-import com.shift.msuportmodi.item.Captchalogue.OperandiUtility;
+import com.shift.msuportmodi.util.OperandiUtil;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.LogicalSide;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class OperandiModus extends ArrayModus {
+public class OperandiModus extends BaseModus {
     public static final List<Item> pool = List.of(
             MSUItems.OPERANDI_HOE.get(),
-            MSUItems.OPERANDI_PICKAXE.get()
-    );
+            MSUItems.OPERANDI_PICKAXE.get(),
+            MSUItems.OPERANDI_SHOVEL.get(),
+            MSUItems.OPERANDI_AXE.get()
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OperandiModus.class);
+    );
 
     public OperandiModus(ModusType<? extends OperandiModus> type, LogicalSide side) {
         super(type, side);
@@ -56,7 +55,7 @@ public class OperandiModus extends ArrayModus {
             return ItemStack.EMPTY;
 
         ItemStack realItem = list.remove(id);
-        ItemStack item = OperandiUtility.createItemWithItem(new ItemStack(pool.get(player.getRandom().nextInt(pool.size()))), realItem, player.server);
+        ItemStack item = OperandiUtil.createItemWithItem(new ItemStack(pool.get(player.getRandom().nextInt(pool.size()))), realItem, player.server);
         markDirty();
 
         if(asCard)

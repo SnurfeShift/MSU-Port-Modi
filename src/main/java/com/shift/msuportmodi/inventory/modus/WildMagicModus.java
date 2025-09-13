@@ -19,8 +19,8 @@ import net.neoforged.fml.LogicalSide;
 
 import java.util.Objects;
 
-public class WildMagicModus extends ArrayModus {
-    public WildMagicModus(ModusType<? extends ArrayModus> type, LogicalSide side) {
+public class WildMagicModus extends BaseModus {
+    public WildMagicModus(ModusType<? extends BaseModus> type, LogicalSide side) {
         super(type, side);
     }
 

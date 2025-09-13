@@ -31,5 +31,3 @@ public record CommunistUpdatePacket(CompoundTag items) implements MSPacket.PlayT
         return ID;
     }
 }
-
-// Custom packet may not be necessary as it's only here to updateContent()

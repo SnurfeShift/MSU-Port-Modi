@@ -1,4 +1,4 @@
-package com.shift.msuportmodi.data.recipe;
+package com.shift.msuportmodi.datagen.recipe;
 
 import com.mraof.minestuck.Minestuck;
 import com.mraof.minestuck.api.alchemy.recipe.GristCostRecipeBuilder;

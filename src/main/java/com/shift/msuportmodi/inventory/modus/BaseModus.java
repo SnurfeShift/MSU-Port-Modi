@@ -19,7 +19,7 @@ import java.util.Iterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ArrayModus extends Modus {
+public class BaseModus extends Modus {
     protected int size;
     protected NonNullList<ItemStack> list;
 
@@ -27,11 +27,7 @@ public class ArrayModus extends Modus {
     protected boolean changed;
     protected NonNullList<ItemStack> items;
 
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ArrayModus.class);
-
-
-    public ArrayModus(ModusType<? extends ArrayModus> type, LogicalSide side) {
+    public BaseModus(ModusType<? extends BaseModus> type, LogicalSide side) {
         super(type, side);
     }
 

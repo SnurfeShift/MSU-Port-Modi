@@ -1,6 +1,7 @@
 package com.shift.msuportmodi.item.Captchalogue;
 
 import com.shift.msuportmodi.item.Components.OperandiStoredItemComponent;
+import com.shift.msuportmodi.util.OperandiUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -23,7 +24,7 @@ public class HoeOperandiItem extends HoeItem {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag)
     {
-        OperandiUtility.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        OperandiUtil.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 
     @Override

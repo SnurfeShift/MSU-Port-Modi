@@ -37,21 +37,21 @@ public class WalletEntityTooltipComponent implements ClientTooltipComponent {
     @Override
     public void renderImage(Font font, int pX, int pY, GuiGraphics guiGraphics) {
         // Data
-        String id = this.tag.getString("id");
+        String id = tag.getString("id");
         EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.parse(id));
         ClientLevel level = Minecraft.getInstance().level;
         if (level == null)
             return;
+
         // Entity
         LivingEntity entity = (LivingEntity) type.create(level);
         if (entity == null)
             return;
-
         entity.setOnGround(true);
-        entity.load(this.tag);
+        entity.load(tag);
 
         // Quaternionf
-        double rotation = System.currentTimeMillis() / 25.0D % 360.0D;
+        double rotation = (System.currentTimeMillis() / 40.0D) % 360.0D; //current time / speed % rotation
         Quaternionf pose = new Quaternionf().rotateZ((float)Math.PI).rotateY((float)Math.toRadians(rotation));
         Vector3f cameraOffset = new Vector3f(0, 0, 0);
 

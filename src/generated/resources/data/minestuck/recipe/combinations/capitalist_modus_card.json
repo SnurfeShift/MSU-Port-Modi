@@ -4,7 +4,7 @@
     "tag": "minestuck:modus_card"
   },
   "input2": {
-    "item": "minestuck:boondollars"
+    "item": "minecraft:gold_ingot"
   },
   "mode": "or",
   "output": "msuportmodi:capitalist_modus_card"

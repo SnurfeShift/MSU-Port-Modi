@@ -1,9 +1,9 @@
-package com.shift.msuportmodi.data;
+package com.shift.msuportmodi.datagen;
 
 import com.shift.msuportmodi.MSUPortModi;
-import com.shift.msuportmodi.data.recipe.MSURecipeProvider;
-import com.shift.msuportmodi.data.tag.MSUBlockTagsProvider;
-import com.shift.msuportmodi.data.tag.MSUItemTagsProvider;
+import com.shift.msuportmodi.datagen.recipe.MSURecipeProvider;
+import com.shift.msuportmodi.datagen.tag.MSUBlockTagsProvider;
+import com.shift.msuportmodi.datagen.tag.MSUItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataGenerator;

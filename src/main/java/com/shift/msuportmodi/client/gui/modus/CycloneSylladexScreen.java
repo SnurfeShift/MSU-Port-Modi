@@ -6,10 +6,9 @@ import com.shift.msuportmodi.inventory.modus.CycloneModus;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
 
-public class CycloneSylladexScreen extends ArraySylladexScreen {
+public class CycloneSylladexScreen extends BaseSylladexScreen {
     public CycloneSylladexScreen(Modus modus) {
-        super(modus);
-        textureIndex = 26;
+        super(modus, 26);
     }
     // Surprisingly this modus didn't need that many changes. One of the big issues however was how it handled ticking,
     // it was really redundant. It used two different tick to change cycle, which now only uses ClientTick and Screen Tick.'

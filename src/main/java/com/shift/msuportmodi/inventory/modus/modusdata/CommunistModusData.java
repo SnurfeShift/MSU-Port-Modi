@@ -1,4 +1,4 @@
-package com.shift.msuportmodi.inventory.modus;
+package com.shift.msuportmodi.inventory.modus.modusdata;
 
 import com.mraof.minestuck.inventory.captchalogue.CaptchaDeckHandler;
 import com.mraof.minestuck.inventory.captchalogue.Modus;
